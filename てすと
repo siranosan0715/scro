@@ -1,15 +1,22 @@
-local base = gg.getRangesList("libunity.so")[1].start
-
--- 共通で使うデータを変数にまとめる
-local item = {
-    address = base + 0x191540,
+local base1 = gg.getRangesList("libunity.so")[1].start
+local base2 = gg.getRangesList("libunity.so")[2].start
+local offset = 0x191540
+local freezeItems = {
+  {
+    address = base1 + offset,
     flags = 16,
     freeze = true,
     value = -99,
+  },
+  {
+    address = base2 + offset,
+    flags = 16,
+    freeze = true,
+    value = -99,
+  }
 }
-
--- リストに追加（freeze開始）
-gg.addListItems({item})
-
--- ...あとで解除したくなったら
-gg.removeListItems({item})
+gg.addListItems(freezeItems)
+gg.removeListItems(freezeItems)
+gg.toast("処理が正しく終了しました✅")
+gg.sleep(1000)
+print("scriptを終了しました。\n作成者：nemunemu._.san")
