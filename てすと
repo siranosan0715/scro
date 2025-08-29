@@ -1,1 +1,15 @@
-gg.alert("Hello world")
+local base = gg.getRangesList("libunity.so")[1].start
+
+-- 共通で使うデータを変数にまとめる
+local item = {
+    address = base + 0x191540,
+    flags = 16,
+    freeze = true,
+    value = -99,
+}
+
+-- リストに追加（freeze開始）
+gg.addListItems({item})
+
+-- ...あとで解除したくなったら
+gg.removeListItems({item})
